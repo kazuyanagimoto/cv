@@ -11,4 +11,5 @@ services:
         tty: true
         stdin_open: true
         environment:
-        - DISABLE_AUTH=true
+            - DISABLE_AUTH=true
+            - TZ=Europe/Madrid

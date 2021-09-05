@@ -16,17 +16,11 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE,
                       message = FALSE)
 
-require(xfun)
-
-packages <- c('vitae'     # The CV's LaTeX Template
-             ,'tibble'    # Data structure for tribbles
-             ,'magrittr'  # The Pipe %>%
-             ,'here'      # Relative File Paths
-             ,'readr'     # Data Loading
-             ,'glue'      # String Manipulation
-            )
-
-xfun::pkg_attach2(packages, message = FALSE)
+library(vitae)
+library(tibble)
+library(magrittr)
+library(readr)
+library(glue)
 
 source(file = "data.r")
 
