@@ -1,0 +1,141 @@
+---
+title: "Kazuharu Yanagimoto's resume"
+author: Kazuharu Yanagimoto
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    css: 
+        - resume
+    self_contained: true
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis',
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+
+# ======================================================================
+# These variables determine how the the data is loaded and how the exports are
+# done.
+
+# Is data stored in google sheets? If no data will be gather from the csvs/
+# folder in project
+using_googlesheets <- TRUE
+
+# Just the copied URL from the sheet
+positions_sheet_loc <-
+  "https://docs.google.com/spreadsheets/d/1LcGXeRIBS9C5sFVhKE649S6jIdGd6XawrtCDtLkBw2Q/"
+
+# Is this sheet available for anyone to read? If you're using a private sheet
+# set this to false and go to gather_data.R and run the data loading manually
+# once to cache authentication
+sheet_is_publicly_readable <- TRUE
+
+# Is the goal of this knit to build a document that is exported to PDF? If so
+# set this to true to have links turned into footnotes at the end of the
+# document
+PDF_EXPORT <- FALSE
+
+
+# A global (gasp) variable that holds all the links that were inserted for
+# placement at the end
+links <- c()
+
+# ======================================================================
+# Now we source two external scripts. One contains functions for building the
+# text output and the other loads up our data from either googlesheets or csvs
+
+# Functions for building sections from CSV data
+source('parsing_functions.R')
+
+# Load data for CV/Resume
+source('gather_data.R')
+
+# Now we just need to filter down the position data to include less verbose
+# categories and only the entries we have designated for the resume
+position_data <- position_data %>%
+  filter(in_resume) %>%
+  mutate(
+    # Build some custom sections by collapsing others
+    section = case_when(
+      section %in% c('research_positions', 'industry_positions') ~ 'positions',
+      section %in% c('data_science_writings', 'by_me_press') ~ 'writings',
+      TRUE ~ section
+    )
+  )
+```
+
+
+Aside
+================================================================================
+
+Contact Info {#contact}
+--------------------------------------------------------------------------------
+
+```{r}
+contact_info %>%
+  glue_data("- <i class='fa fa-{icon}'></i> {contact}")
+```
+- For more information, please contact me via email.
+
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+```{r}
+build_skill_bars(skills, "skill")
+```
+
+Languages {#languages}
+--------------------------------------------------------------------------------
+
+```{r}
+build_skill_bars(skills, "language")
+```
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Last updated on `r format(Sys.time(), "%b %d, %Y")`.
+
+
+Main
+================================================================================
+
+Kazuharu Yanagimoto {#title}
+--------------------------------------------------------------------------------
+
+### Ph.D. Candidate in Economics
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('education')
+```
+
+Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('research')
+```
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('teaching')
+```
+
+Scholarships {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('scholarship')
+```
