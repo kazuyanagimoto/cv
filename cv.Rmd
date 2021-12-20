@@ -8,7 +8,6 @@ output:
       - custom_resume.css
       - resume
     self_contained: true
-knit: pagedown::chrome_print
 ---
 
 
