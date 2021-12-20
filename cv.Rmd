@@ -5,14 +5,15 @@ date: "`r Sys.Date()`"
 output:
   pagedown::html_resume:
     css: 
-        - resume
+      - custom_resume.css
+      - resume
     self_contained: true
 ---
 
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
-  results='asis',
+  results = 'asis',
   echo = FALSE
 )
 library(tidyverse)
@@ -38,7 +39,7 @@ sheet_is_publicly_readable <- TRUE
 # Is the goal of this knit to build a document that is exported to PDF? If so
 # set this to true to have links turned into footnotes at the end of the
 # document
-PDF_EXPORT <- FALSE
+PDF_EXPORT <- TRUE
 
 
 # A global (gasp) variable that holds all the links that were inserted for
@@ -55,23 +56,14 @@ source('parsing_functions.R')
 # Load data for CV/Resume
 source('gather_data.R')
 
-# Now we just need to filter down the position data to include less verbose
-# categories and only the entries we have designated for the resume
-position_data <- position_data %>%
-  filter(in_resume) %>%
-  mutate(
-    # Build some custom sections by collapsing others
-    section = case_when(
-      section %in% c('research_positions', 'industry_positions') ~ 'positions',
-      section %in% c('data_science_writings', 'by_me_press') ~ 'writings',
-      TRUE ~ section
-    )
-  )
 ```
 
 
 Aside
 ================================================================================
+
+[<i class='fas fa-download'></i> Download PDF](https://github.com/nicetak/cv/cv.pdf)
+
 
 Contact Info {#contact}
 --------------------------------------------------------------------------------
@@ -107,7 +99,7 @@ Last updated on `r format(Sys.time(), "%b %d, %Y")`.
 Main
 ================================================================================
 
-Kazuharu Yanagimoto {#title}
+Kazuharu **Yanagimoto** {#title}
 --------------------------------------------------------------------------------
 
 ### Ph.D. Candidate in Economics
