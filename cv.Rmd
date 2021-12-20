@@ -62,7 +62,11 @@ source('gather_data.R')
 Aside
 ================================================================================
 
+<<<<<<< HEAD
 [<i class='fas fa-download'></i> Download PDF](https://github.com/nicetak/cv/cv.pdf)
+=======
+[<i class='fas fa-download'></i> Download PDF](https://github.com/nstrayer/cv/raw/master/strayer_cv.pdf)
+>>>>>>> 83c73a70bfbb9c9b218fd9240c1c42732e688489
 
 
 Contact Info {#contact}
