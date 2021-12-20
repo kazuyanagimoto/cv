@@ -2,6 +2,9 @@
 title: "Kazuharu Yanagimoto's resume"
 author: Kazuharu Yanagimoto
 date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: true
 output:
   pagedown::html_resume:
     css: 
@@ -62,12 +65,13 @@ source('gather_data.R')
 Aside
 ================================================================================
 
-<<<<<<< HEAD
-[<i class='fas fa-download'></i> Download PDF](https://github.com/nicetak/cv/cv.pdf)
-=======
-[<i class='fas fa-download'></i> Download PDF](https://github.com/nstrayer/cv/raw/master/strayer_cv.pdf)
->>>>>>> 83c73a70bfbb9c9b218fd9240c1c42732e688489
-
+```{r}
+if(params$pdf_mode){
+  cat("[View this CV online](https://nicetak.github.io/cv/)")
+} else {
+  cat("[<i class='fas fa-download'></i> Download the PDF](https://github.com/nicetak/cv/raw/main/cv.pdf)")
+}
+```
 
 Contact Info {#contact}
 --------------------------------------------------------------------------------
