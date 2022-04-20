@@ -67,7 +67,7 @@ Aside
 
 ```{r}
 if(params$pdf_mode){
-  cat("[View this CV online](https://nicetak.github.io/cv/)")
+  cat("[<i class='fas fa-external-link-alt'></i> View this CV online](https://nicetak.github.io/cv/)")
 } else {
   cat("[<i class='fas fa-download'></i> Download the PDF](https://github.com/nicetak/cv/raw/main/cv.pdf)")
 }
