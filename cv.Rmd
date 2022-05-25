@@ -1,5 +1,5 @@
 ---
-title: "Kazuharu Yanagimoto's resume"
+title: "Kazuharu Yanagimoto's CV"
 author: Kazuharu Yanagimoto
 date: "`r Sys.Date()`"
 params:
@@ -7,102 +7,76 @@ params:
     value: true
 output:
   pagedown::html_resume:
-    css: 
-      - custom_resume.css
-      - resume
+    css: ['dd_cv.css', 'resume']
     self_contained: true
 ---
 
-
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
-  results = 'asis',
+  results='asis', 
   echo = FALSE
 )
-library(tidyverse)
-library(glue)
 
-# ======================================================================
-# These variables determine how the the data is loaded and how the exports are
-# done.
+library(magrittr) # For the pipe
+source("cv_printing_functions.r")
 
-# Is data stored in google sheets? If no data will be gather from the csvs/
-# folder in project
-using_googlesheets <- TRUE
+# Read in all data and initialize a CV printer object
+CV <- create_CV_object(
+  data_location = "https://docs.google.com/spreadsheets/d/1k-TP3YLaOBmm06wTlXO5u80g8OHIxmaiHyiporoHvJM/",  
+  pdf_mode = params$pdf_mode
+)
 
-# Just the copied URL from the sheet
-positions_sheet_loc <-
-  "https://docs.google.com/spreadsheets/d/1LcGXeRIBS9C5sFVhKE649S6jIdGd6XawrtCDtLkBw2Q/"
-
-# Is this sheet available for anyone to read? If you're using a private sheet
-# set this to false and go to gather_data.R and run the data loading manually
-# once to cache authentication
-sheet_is_publicly_readable <- TRUE
-
-# Is the goal of this knit to build a document that is exported to PDF? If so
-# set this to true to have links turned into footnotes at the end of the
-# document
-PDF_EXPORT <- TRUE
+```
 
 
-# A global (gasp) variable that holds all the links that were inserted for
-# placement at the end
-links <- c()
-
-# ======================================================================
-# Now we source two external scripts. One contains functions for building the
-# text output and the other loads up our data from either googlesheets or csvs
-
-# Functions for building sections from CSV data
-source('parsing_functions.R')
-
-# Load data for CV/Resume
-source('gather_data.R')
-
+```{r}
+# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
+if(params$pdf_mode) {
+    cat("
+<style>
+:root{
+  --decorator-outer-offset-left: -6.5px;
+}
+</style>")
+}
 ```
 
 
 Aside
 ================================================================================
 
+
+
 ```{r}
 if(params$pdf_mode){
-  cat("[View this CV online](https://nicetak.github.io/cv/)")
+  cat("[<i class='fas fa-external-link-alt'></i> View this CV online](https://nicetak.github.io/cv/)")
 } else {
   cat("[<i class='fas fa-download'></i> Download the PDF](https://github.com/nicetak/cv/raw/main/cv.pdf)")
 }
 ```
 
-Contact Info {#contact}
+Contact {#contact}
 --------------------------------------------------------------------------------
 
 ```{r}
-contact_info %>%
-  glue_data("- <i class='fa fa-{icon}'></i> {contact}")
+CV %>% print_contact_info()
 ```
-- For more information, please contact me via email.
+
 
 
 Skills {#skills}
 --------------------------------------------------------------------------------
 
 ```{r}
-build_skill_bars(skills, "skill")
+CV %>% print_skill_bars()
 ```
 
-Languages {#languages}
+Language {#language}
 --------------------------------------------------------------------------------
 
 ```{r}
-build_skill_bars(skills, "language")
+CV %>% print_language_bars()
 ```
-
-
-Disclaimer {#disclaimer}
---------------------------------------------------------------------------------
-
-Last updated on `r format(Sys.time(), "%b %d, %Y")`.
-
 
 Main
 ================================================================================
@@ -110,32 +84,48 @@ Main
 Kazuharu **Yanagimoto** {#title}
 --------------------------------------------------------------------------------
 
-### Ph.D. Candidate in Economics
+```{r}
+# Note the special double pipe so we modify the CV object in place
+CV %<>% print_text_block("intro") 
+```
+
+
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
 
 ```{r}
-position_data %>% print_section('education')
+CV %<>% print_section('education')
 ```
+
+
 
 Research Experience {data-icon=laptop}
 --------------------------------------------------------------------------------
 
 ```{r}
-position_data %>% print_section('research')
+CV %<>% print_section('research')
 ```
 
 Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
 ```{r}
-position_data %>% print_section('teaching')
+CV %<>% print_section('teaching')
 ```
 
 Scholarships {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
 ```{r}
-position_data %>% print_section('scholarship')
+CV %<>% print_section('scholarship')
 ```
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
+
+The source code is available on [GitHub](https://github.com/nicetak/cv/).
+
+Last updated on `r format(Sys.time(), "%b %d, %Y")`.
