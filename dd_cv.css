@@ -55,6 +55,11 @@ sup {
   margin-left: -3px;
 }
 
+/* Award icon isn't centered by default which is lame */
+.fa-award {
+  margin-left: 2px;
+}
+
 /* When we have links at bottom in a list make sure they actually are numbered */
 #links li {
   list-style-type: decimal;
@@ -67,7 +72,7 @@ sup {
 
 /* Move closer to start and up towards header */
 .aside ul {
-  padding-left: 1rem;
+  padding-left: .5rem;
 }
 
 .aside li::before {
@@ -76,7 +81,7 @@ sup {
   content: "• ";
 }
 
-/* Make sure elements in asside are centered and have a nice small text */
+/* Make sure elements in aside are centered and have a nice small text */
 .aside {
   width: calc(var(--sidebar-width) + 9px);
   line-height: 1.2;
