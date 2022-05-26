@@ -107,6 +107,9 @@ Research Experience {data-icon=laptop}
 CV %<>% print_section('research')
 ```
 
+
+
+
 Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
@@ -114,12 +117,18 @@ Teaching Experience {data-icon=chalkboard-teacher}
 CV %<>% print_section('teaching')
 ```
 
-Scholarships {data-icon=chalkboard-teacher}
+
+
+
+Scholarships {data-icon=award data-concise=true}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('scholarship')
 ```
+
+
+
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
