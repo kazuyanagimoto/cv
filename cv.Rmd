@@ -1,140 +1,104 @@
 ---
-title: "Kazuharu Yanagimoto's CV"
-author: Kazuharu Yanagimoto
-date: "`r Sys.Date()`"
-params:
-  pdf_mode:
-    value: true
-output:
-  pagedown::html_resume:
-    css: ['dd_cv.css', 'resume']
-    self_contained: true
+name: Kazuharu
+surname: Yanagimoto
+position: "Ph.D. Candidate in Economics. Labor, Macro, and Family Economics."
+address: "CEMFI, Calle Casado del Alisal 5, 28014 Madrid, Spain"
+www: "kazuyanagimoto.com"
+twitter: kazuyanagimoto
+email: "kazuharu.yanagimoto@cemfi.edu.es"
+github: kazuyanagimoto
+linkedin: kazuharu-yanagimoto
+date: "`r format(Sys.time(), '%B %Y')`"
+headcolor: 516db0
+docname: Kazuharu Yanagimoto
+output: vitae::awesomecv
 ---
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(
-  results='asis', 
-  echo = FALSE
-)
-
-library(magrittr) # For the pipe
-source("cv_printing_functions.r")
-
-# Read in all data and initialize a CV printer object
-CV <- create_CV_object(
-  data_location = "https://docs.google.com/spreadsheets/d/1k-TP3YLaOBmm06wTlXO5u80g8OHIxmaiHyiporoHvJM/",  
-  pdf_mode = params$pdf_mode
-)
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+library(vitae)
+library(tidyverse)
+library(googlesheets4)
+ss <- gs4_get(gs4_find("cv_yanagimoto"))
 ```
 
+
+# Education
+
+```{r EDUCATION}
+read_sheet(ss, sheet = "education") |>
+  detailed_entries(
+    with = degree,
+    what = institution,
+    why = detail,
+    when = glue::glue("{startMonth} {startYear} --> {endMonth} {endYear}",.na = ""),
+    where = location
+  )
+```
+
+# Professional and Research Experience
+
+```{r EMPLOYMENT}
+read_sheet(ss, sheet = "job") |>
+  detailed_entries(
+    with = title,
+    what = institution,
+    why = detail,
+    when = glue::glue("{startMonth} {startYear} --> {endMonth} {endYear}",.na = ""),
+    where = location
+  )
+```
+
+# Scholarships
+
+```{r HONORS}
+read_sheet(ss, sheet = "honor") |>
+  detailed_entries(
+    with = accomplishment,
+    why = detail,
+    when = glue::glue("{startMonth} {startYear} --> {endMonth} {endYear}",.na = ""),
+    where = location
+  )
+```
+
+# Research
+
+## Working Papers
 
 ```{r}
-# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
-if(params$pdf_mode) {
-    cat("
-<style>
-:root{
-  --decorator-outer-offset-left: -6.5px;
-}
-</style>")
-}
+read_sheet(ss, sheet = "research") |>
+  filter(type == "working_paper") |>
+  detailed_entries(
+    with = title,
+    what = coauthors,
+    why = detail,
+    where = date
+  )
 ```
 
 
-Aside
-================================================================================
 
-
+## Work in Progress
 
 ```{r}
-if(params$pdf_mode){
-  cat("[<i class='fas fa-external-link-alt'></i> View this CV online](https://nicetak.github.io/cv/)")
-} else {
-  cat("[<i class='fas fa-download'></i> Download the PDF](https://github.com/nicetak/cv/raw/main/cv.pdf)")
-}
-```
-
-Contact {#contact}
---------------------------------------------------------------------------------
-
-```{r}
-CV %>% print_contact_info()
+read_sheet(ss, sheet = "research") |>
+  filter(type == "work_in_progress") |>
+  detailed_entries(
+    with = title,
+    what = coauthors,
+    why = detail
+  )
 ```
 
 
+# Skills
 
-Skills {#skills}
---------------------------------------------------------------------------------
-
-```{r}
-CV %>% print_skill_bars()
+```{r SKILLS}
+read_sheet(ss, sheet = "skill") |>
+  detailed_entries(
+    with = area,
+    what = skills
+  )
 ```
-
-Language {#language}
---------------------------------------------------------------------------------
-
-```{r}
-CV %>% print_language_bars()
-```
-
-Main
-================================================================================
-
-Kazuharu **Yanagimoto** {#title}
---------------------------------------------------------------------------------
-
-```{r}
-# Note the special double pipe so we modify the CV object in place
-CV %<>% print_text_block("intro") 
-```
-
-
-
-Education {data-icon=graduation-cap data-concise=true}
---------------------------------------------------------------------------------
-
-```{r}
-CV %<>% print_section('education')
-```
-
-
-
-Research Experience {data-icon=laptop}
---------------------------------------------------------------------------------
-
-```{r}
-CV %<>% print_section('research')
-```
-
-
-
-
-Teaching Experience {data-icon=chalkboard-teacher}
---------------------------------------------------------------------------------
-
-```{r}
-CV %<>% print_section('teaching')
-```
-
-
-
-
-Scholarships {data-icon=award data-concise=true}
---------------------------------------------------------------------------------
-
-```{r}
-CV %<>% print_section('scholarship')
-```
-
-
-
-
-Disclaimer {#disclaimer}
---------------------------------------------------------------------------------
-
-Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
-
-The source code is available on [GitHub](https://github.com/nicetak/cv/).
-
-Last updated on `r format(Sys.time(), "%b %d, %Y")`.
