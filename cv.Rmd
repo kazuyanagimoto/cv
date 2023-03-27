@@ -10,7 +10,7 @@ github: kazuyanagimoto
 linkedin: kazuharu-yanagimoto
 date: "`r format(Sys.time(), '%B %Y')`"
 headcolor: 516db0
-docname: Kazuharu Yanagimoto
+docname: CV
 output: vitae::awesomecv
 ---
 
