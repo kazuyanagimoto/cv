@@ -98,7 +98,12 @@ Education {data-icon=graduation-cap data-concise=true}
 CV %<>% print_section('education')
 ```
 
+Research {data-icon=book}
+--------------------------------------------------------------------------------
 
+```{r}
+CV %<>% print_section('working_papers')
+```
 
 Research Experience {data-icon=laptop}
 --------------------------------------------------------------------------------
