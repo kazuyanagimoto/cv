@@ -3,11 +3,11 @@ name: Kazuharu
 surname: Yanagimoto
 position: "Ph.D. Candidate in Economics. Labor, Macro, and Family Economics."
 address: "CEMFI, Calle Casado del Alisal 5, 28014 Madrid, Spain"
+orcid: "0009-0007-1967-8304"
 www: "kazuyanagimoto.com"
-twitter: kazuyanagimoto
 email: "kazuharu.yanagimoto@cemfi.edu.es"
 github: kazuyanagimoto
-linkedin: kazuharu-yanagimoto
+twitter: kazuyanagimoto
 date: "`r format(Sys.time(), '%B %Y')`"
 headcolor: 516db0
 docname: CV
