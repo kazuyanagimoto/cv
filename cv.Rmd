@@ -38,31 +38,6 @@ read_sheet(ss, sheet = "education") |>
   )
 ```
 
-# Professional and Research Experience
-
-```{r EMPLOYMENT}
-read_sheet(ss, sheet = "job") |>
-  detailed_entries(
-    with = title,
-    what = institution,
-    why = detail,
-    when = glue::glue("{startMonth} {startYear} --> {endMonth} {endYear}",.na = ""),
-    where = location
-  )
-```
-
-# Scholarships
-
-```{r HONORS}
-read_sheet(ss, sheet = "honor") |>
-  detailed_entries(
-    with = accomplishment,
-    why = detail,
-    when = glue::glue("{startMonth} {startYear} --> {endMonth} {endYear}",.na = ""),
-    where = location
-  )
-```
-
 # Research
 
 ## Working Papers
@@ -91,6 +66,48 @@ read_sheet(ss, sheet = "research") |>
     why = detail
   )
 ```
+
+# Research and Teaching Experience
+
+## Research
+
+```{r EMPLOYMENT}
+read_sheet(ss, sheet = "job") |>
+  detailed_entries(
+    with = title,
+    what = institution,
+    why = detail,
+    when = glue::glue("{startMonth} {startYear} --> {endMonth} {endYear}",.na = ""),
+    where = location
+  )
+```
+
+## Teaching
+
+```{r TEACHING}
+read_sheet(ss, sheet = "teaching") |>
+  detailed_entries(
+    with = title,
+    what = institution,
+    why = detail,
+    when = glue::glue("{startMonth} {startYear} --> {endMonth} {endYear}",.na = ""),
+    where = location
+  )
+```
+
+
+# Scholarships
+
+```{r HONORS}
+read_sheet(ss, sheet = "honor") |>
+  detailed_entries(
+    with = accomplishment,
+    why = detail,
+    when = glue::glue("{startMonth} {startYear} --> {endMonth} {endYear}",.na = ""),
+    where = location
+  )
+```
+
 
 
 # Skills
