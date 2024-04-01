@@ -67,6 +67,18 @@ read_sheet(ss, sheet = "research") |>
   )
 ```
 
+## Conference and Seminar Presentations
+
+```{r}
+read_sheet(ss, sheet = "conference") |>
+  detailed_entries(
+    with = title,
+    why = detail,
+    when = glue::glue("{month} {year}",.na = ""),
+    where = location
+  )
+```
+
 # Research and Teaching Experience
 
 ## Research
