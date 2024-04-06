@@ -11,6 +11,8 @@ twitter: kazuyanagimoto
 date: "`r format(Sys.time(), '%B %Y')`"
 headcolor: 516db0
 docname: CV
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
 output: vitae::awesomecv
 ---
 

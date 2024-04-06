@@ -39,4 +39,6 @@ vignettes/*.pdf
 .Renviron
 
 # Other
-docs/
+docs/*
+!docs/index.html
+!docs/_config.yml
