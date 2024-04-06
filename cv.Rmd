@@ -19,16 +19,14 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE,
                       message = FALSE)
 library(vitae)
-library(tidyverse)
-library(googlesheets4)
-ss <- gs4_get(gs4_find("cv_yanagimoto"))
+library(here)
 ```
 
 
 # Education
 
 ```{r EDUCATION}
-read_sheet(ss, sheet = "education") |>
+read.csv(here("data", "education.csv")) |>
   detailed_entries(
     with = degree,
     what = institution,
@@ -40,10 +38,14 @@ read_sheet(ss, sheet = "education") |>
 
 # Research
 
+```{r}
+research <- read.csv(here("data", "research.csv"))
+```
+
 ## Working Papers
 
 ```{r}
-read_sheet(ss, sheet = "research") |>
+research |>
   filter(type == "working_paper") |>
   detailed_entries(
     with = title,
@@ -53,12 +55,10 @@ read_sheet(ss, sheet = "research") |>
   )
 ```
 
-
-
 ## Work in Progress
 
 ```{r}
-read_sheet(ss, sheet = "research") |>
+research |>
   filter(type == "work_in_progress") |>
   detailed_entries(
     with = title,
@@ -70,7 +70,7 @@ read_sheet(ss, sheet = "research") |>
 ## Conference and Seminar Presentations
 
 ```{r}
-read_sheet(ss, sheet = "conference") |>
+read.csv(here("data", "conference.csv")) |>
   detailed_entries(
     with = title,
     why = detail,
@@ -84,7 +84,7 @@ read_sheet(ss, sheet = "conference") |>
 ## Research
 
 ```{r EMPLOYMENT}
-read_sheet(ss, sheet = "job") |>
+read.csv(here("data", "job.csv")) |>
   detailed_entries(
     with = title,
     what = institution,
@@ -97,7 +97,7 @@ read_sheet(ss, sheet = "job") |>
 ## Teaching
 
 ```{r TEACHING}
-read_sheet(ss, sheet = "teaching") |>
+read.csv(here("data", "teaching.csv")) |>
   detailed_entries(
     with = title,
     what = institution,
@@ -111,7 +111,7 @@ read_sheet(ss, sheet = "teaching") |>
 # Scholarships
 
 ```{r HONORS}
-read_sheet(ss, sheet = "honor") |>
+read.csv(here("data", "honor.csv")) |>
   detailed_entries(
     with = accomplishment,
     why = detail,
@@ -125,7 +125,7 @@ read_sheet(ss, sheet = "honor") |>
 # Skills
 
 ```{r SKILLS}
-read_sheet(ss, sheet = "skill") |>
+read.csv(here("data", "skill.csv")) |>
   detailed_entries(
     with = area,
     what = skills
