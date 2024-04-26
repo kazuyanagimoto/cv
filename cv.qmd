@@ -1,0 +1,143 @@
+---
+title: "Kazuharu Yanagimoto's CV"
+author:
+  firstname: Kazuharu
+  lastname: Yanagimoto
+  address: CEMFI, Calle Casado del Alisal 5, 28014 Madrid, Spain
+  position: "Ph.D. Candidate in Economics. Labor, Macro, and Family Economics."
+  contacts:
+    - icon: fa envelope
+      text: kazuharu.yanagimoto@cemfi.edu.es
+      url: "mailto:ae@example.com"
+    - icon: assets/icon/bi-house-fill.svg
+      text: kazuyanagimoto.com
+      url: https://kazuyanagimoto.com
+    - icon: fa brands orcid
+      text: 0009-0007-1967-8304
+      url: https://orcid.org/0009-0007-1967-8304
+    - icon: fa brands github
+      text: kazuyanagimoto
+      url: https://github.com/kazuyanagimoto
+    - icon: fa brands x-twitter
+      text: kazuyanagimoto
+      url: https://twitter.com/kazuyanagimoto
+style:
+  color-accent: 516db0  
+format:
+  awesomecv-typst:
+    font-paths: ["assets/fonts/"]
+    keep-typ: true
+execute: 
+  echo: false
+  warning: false
+---
+
+```{r}
+library(typstcv)
+```
+
+
+## Education
+
+```{r}
+#| output: asis
+educ <- read.csv("data/education.csv",
+                 colClasses = c("character", "Date", "Date", "character", "character"))
+
+educ |>
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry(title = "degree",
+               description = "institution")
+```
+
+## Research
+
+```{r}
+research <- read.csv("data/research.csv")
+```
+
+### Working Papers
+
+```{r}
+#| output: asis
+research[research$type == "working_paper", ] |>
+  resume_entry(title = "title",
+               description = "coauthors",
+               date = "date")
+```
+
+### Work in Progress
+
+```{r}
+#| output: asis
+
+research[research$type == "work_in_progress", ] |>
+  resume_entry(title = "title",
+               description = "coauthors",
+               date = "date")
+```
+
+## Conference and Seminar Presentations
+
+```{r}
+#| output: asis
+
+read.csv("data/conference.csv",
+         colClasses = c("character", "Date", "Date", "character", "character")) |>
+  format_date(sort_by = "start") |>
+  resume_entry(title = "title")
+```
+
+## Research Experience
+
+```{r}
+#| output: asis
+
+read.csv("data/job.csv", colClasses = c("character", "character", "Date", "Date", "character")) |>
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry(description = "institution")
+```
+
+## Teaching Experience
+
+```{r}
+#| output: asis
+
+read.csv("data/teaching.csv",
+         colClasses = c("character", "character", "Date", "Date", "character")) |>
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry(description = "institution")
+```
+
+## Research Grant
+
+```{r}
+#| output: asis
+
+read.csv("data/grant.csv",
+         colClasses = c("character", "character", "Date")) |>
+  format_date(start = "year", date_format = "%Y", sort_by = "start") |>
+  resume_entry(description = "amount")
+```
+
+
+## Scholarships
+
+```{r}
+#| output: asis
+
+read.csv("data/scholarship.csv",
+         colClasses = c("character", "Date", "Date", "character", "character"))  |>
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry()
+```
+
+
+## Skills
+
+```{r}
+#| output: asis
+read.csv("data/skill.csv") |>
+  resume_entry(title = "area",
+               description = "skills")
+```

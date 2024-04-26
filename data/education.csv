@@ -1,4 +1,4 @@
-degree,startMonth,startYear,endMonth,endYear,institution,location,detail
-PhD. Candidate in Economics,September,2021,,Present,CEMFI,"Madrid, Spain",
-Master in Economics and Finance,September,2019,June,2021,CEMFI,"Madrid, Spain",
-Bachelor in Economics,April,2014,March,2019,The University of Tokyo,"Tokyo, Japan",
+degree,start,end,institution,location,detail
+Bachelor in Economics,2014-04-01,2019-03-01,The University of Tokyo,"Tokyo, Japan"
+Master in Economics and Finance,2019-09-01,2021-06-30,CEMFI,"Madrid, Spain"
+PhD. Candidate in Economics,2021-09-01,,CEMFI,"Madrid, Spain"
