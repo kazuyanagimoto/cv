@@ -3,13 +3,31 @@
 // const color
 #let color-darknight = rgb("#131A28")
 #let color-darkgray = rgb("#333333")
+#let color-middledarkgray = rgb("#414141")
 #let color-gray = rgb("#5d5d5d")
 #let color-lightgray = rgb("#999999")
-#let color-accent-default = rgb("#dc3522")
 
-// Default fonts
+// Default style
+#let color-accent-default = rgb("#dc3522")
 #let font-header-default = ("Roboto", "Arial", "Helvetica", "Dejavu Sans")
 #let font-text-default = ("Source Sans Pro", "Arial", "Helvetica", "Dejavu Sans")
+
+// User defined style
+$if(style.color-accent)$
+#let color-accent = rgb("$style.color-accent$")
+$else$
+#let color-accent = color-accent-default
+$endif$
+$if(style.font-header)$
+#let font-header = "$style.font-header$"
+$else$
+#let font-header = font-header-default
+$endif$
+$if(style.font-text)$
+#let font-text = "$style.font-text$"
+$else$
+#let font-text = font-text-default
+$endif$
 
 /// Helpers
 
@@ -34,13 +52,14 @@
 
 // contaxt text parser
 #let unescape_text(text) = {
-  text.replace("\\", "") // This is not a perfect solution
+  // This is not a perfect solution
+  text.replace("\\", "").replace(".~", ". ")
 }
 
 // layout utility
 #let __justify_align(left_body, right_body) = {
   block[
-    #box(width: 3fr)[#left_body]
+    #box(width: 4fr)[#left_body]
     #box(width: 1fr)[
       #align(right)[
         #right_body
@@ -76,7 +95,7 @@
     size: 10pt,
     weight: "thin",
     style: "italic",
-    fill: color-accent-default,
+    fill: color-accent,
   )
   body
 }
@@ -103,7 +122,12 @@
   )
   pad[
     #__justify_align[
-      == #primary
+      #set text(
+        size: 12pt,
+        weight: "bold",
+        fill: color-darkgray,
+      )
+      #primary
     ][
       #secondary-right-header[#secondary]
     ]
@@ -115,7 +139,12 @@
 /// - secondary (content): The secondary section of the header
 #let secondary-justified-header(primary, secondary) = {
   __justify_align[
-    === #primary
+     #set text(
+      size: 10pt,
+      weight: "regular",
+      fill: color-gray,
+    )
+    #primary
   ][
     #tertiary-right-header[#secondary]
   ]
@@ -127,24 +156,9 @@
   title: "CV",
   author: (:),
   date: datetime.today().display("[month repr:long] [day], [year]"),
-  style: (:),
   body,
 ) = {
   
-  // set default style
-  let color-accent = color-accent-default
-  if "color-accent" in style.keys() {
-    color-accent = rgb(style.color-accent)
-  }
-  let font-header = font-header-default
-  if "font-header" in style.keys() {
-    font-header = style.font-header
-  }
-  let font-text = font-text-default
-  if "font-text" in style.keys() {
-    font-text = style.font-text
-  }
-
   set document(
     author: author.firstname + " " + author.lastname,
     title: title,
@@ -161,6 +175,7 @@
     paper: "a4",
     margin: (left: 15mm, right: 15mm, top: 10mm, bottom: 10mm),
     footer: [
+
       #set text(
         fill: gray,
         size: 8pt,
@@ -178,7 +193,6 @@
         #counter(page).display()
       ]
     ],
-    footer-descent: 0pt,
   )
   
   // set paragraph spacing
@@ -206,11 +220,11 @@
   ]
   
   show heading.where(level: 2): it => {
+
     set text(
-      color-darkgray,
+      color-middledarkgray,
       size: 12pt,
-      style: "normal",
-      weight: "bold",
+      weight: "thin"
     )
     it.body
   }
@@ -240,7 +254,7 @@
     ]
   }
   
-  let positions = {
+  let position = {
     set block(
       above: 0.75em,
       below: 0.75em,
@@ -253,9 +267,7 @@
     )
     align(center)[
       #smallcaps[
-        #author.positions.join(
-          text[#"  "#sym.dot.c#"  "],
-        )
+        #author.position
       ]
     ]
   }
@@ -302,7 +314,7 @@
   }
   
   name
-  positions
+  position
   address
   contacts
   body
@@ -331,8 +343,7 @@
   title: none,
   location: "",
   date: "",
-  description: "",
-  color-accent: color-accent-default,
+  description: ""
 ) = {
   pad[
     #justified-header(title, location)

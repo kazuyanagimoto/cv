@@ -1,26 +1,28 @@
 on:
+  workflow_dispatch:
   push:
     branches: main
 
-name: Render CV
+name: Quarto Publish
 
 jobs:
-  render:
-    name: Render CV
+  build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - uses: r-lib/actions/setup-r@v2
-      - uses: r-lib/actions/setup-pandoc@v2
-      - uses: r-lib/actions/setup-tinytex@v2
-      - uses: r-lib/actions/setup-renv@v2
-      - name: Render CV
-        run: Rscript -e 'rmarkdown::render("cv.Rmd", output_format = "vitae::awesomecv", output_dir = "docs/")'
-      - name: Deploy to GitHub pages 🚀
-        if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install dependencies
+        run: Rscript -e "install.packages('typst', repos = 'https://kazuyanagimoto.r-universe.dev')"
+
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
-          clean: false
-          branch: gh-pages
-          folder: docs
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

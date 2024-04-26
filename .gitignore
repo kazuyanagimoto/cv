@@ -39,6 +39,9 @@ vignettes/*.pdf
 .Renviron
 
 # Other
+.vscode/
 docs/*
 !docs/index.html
 !docs/_config.yml
+/.quarto/
+cv.typ

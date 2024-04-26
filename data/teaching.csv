@@ -1,4 +1,4 @@
-title,institution,startMonth,startYear,endMonth,endYear,location,detail
-Teaching Assistant in Time-series Econometrics,CEMFI,January,2024,March,2024,"Madrid, Spain",
-Teaching Assistant in International Economics,CEMFI,January,2023,March,2023,"Madrid, Spain",
-Teaching Assistant in Mathematics,CEMFI,September,2021,December,2021,"Madrid, Spain",
+title,institution,start,end,location,detail
+Teaching Assistant in Mathematics,CEMFI,2021-09-01,2021-12-31,"Madrid, Spain",
+Teaching Assistant in International Economics,CEMFI,2023-01-01,2024-03-31,"Madrid, Spain",
+Teaching Assistant in Time-series Econometrics,CEMFI,2024-01-01,2024-03-31,"Madrid, Spain",
