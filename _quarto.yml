@@ -1,3 +1,6 @@
 project:
   type: default
   output-dir: docs
+
+execute: 
+  freeze: auto
