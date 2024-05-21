@@ -1,5 +1,5 @@
 ---
-title: "Kazuharu Yanagimoto's CV"
+title: "Kazuharu Yanagimoto"
 author:
   firstname: Kazuharu
   lastname: Yanagimoto
@@ -107,6 +107,15 @@ read.csv("data/teaching.csv",
          colClasses = c("character", "character", "Date", "Date", "character")) |>
   format_date(end = "end", sort_by = "start") |>
   resume_entry(description = "institution")
+```
+
+## Other Experience
+
+```{r}
+#| output: asis
+
+read.csv("data/other.csv") |>
+  resume_entry(details = c("detail1", "detail2"))
 ```
 
 ## Research Grant

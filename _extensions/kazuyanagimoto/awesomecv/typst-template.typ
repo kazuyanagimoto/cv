@@ -175,7 +175,6 @@ $endif$
     paper: "a4",
     margin: (left: 15mm, right: 15mm, top: 10mm, bottom: 10mm),
     footer: [
-
       #set text(
         fill: gray,
         size: 8pt,
@@ -220,7 +219,6 @@ $endif$
   ]
   
   show heading.where(level: 2): it => {
-
     set text(
       color-middledarkgray,
       size: 12pt,
@@ -331,6 +329,7 @@ $endif$
     fill: color-darknight,
   )
   set par(leading: 0.65em)
+  set list(indent: 1em)
   body
 }
 
