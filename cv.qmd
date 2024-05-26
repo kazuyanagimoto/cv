@@ -21,8 +21,17 @@ author:
     - icon: fa brands x-twitter
       text: kazuyanagimoto
       url: https://twitter.com/kazuyanagimoto
+    - icon: assets/icon/fa-google-scholar.svg
+      text: Kazuharu Yanagimoto
+      url: https://scholar.google.com/citations?user=kypV1CYAAAAJ
+    - icon: fa brands linkedin
+      text: Kazuharu Yanagimoto
+      url: https://www.linkedin.com/in/kazuharu-yanagimoto
+    - icon: assets/icon/si-zenn.svg
+      text: Kazuharu Yanagimoto
+      url: https://zenn.dev/nicetak
 style:
-  color-accent: 516db0  
+  color-accent: 516db0
 format:
   awesomecv-typst:
     font-paths: ["assets/fonts/"]
