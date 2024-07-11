@@ -8,7 +8,7 @@ author:
   contacts:
     - icon: fa envelope
       text: kazuharu.yanagimoto@cemfi.edu.es
-      url: "mailto:ae@example.com"
+      url: "mailto:kazuharu.yanagimoto@cemfi.edu.es"
     - icon: assets/icon/bi-house-fill.svg
       text: kazuyanagimoto.com
       url: https://kazuyanagimoto.com
