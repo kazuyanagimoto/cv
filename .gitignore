@@ -45,3 +45,4 @@ docs/*
 !docs/_config.yml
 /.quarto/
 cv.typ
+.DS_Store
