@@ -25,8 +25,8 @@ author:
       text: Kazuharu Yanagimoto
       url: https://scholar.google.com/citations?user=kypV1CYAAAAJ
     - icon: assets/icon/si-bluesky.svg
-      text: kazuyanagimoto
-      url: https://bsky.app/profile/kazuyanagimoto.bsky.social
+      text: kazuyanagimoto.com
+      url: https://bsky.app/profile/kazuyanagimoto.com
     - icon: fa brands linkedin
       text: Kazuharu Yanagimoto
       url: https://www.linkedin.com/in/kazuharu-yanagimoto
