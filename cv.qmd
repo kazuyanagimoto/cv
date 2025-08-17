@@ -33,12 +33,19 @@ author:
     - icon: assets/icon/si-zenn.svg
       text: Kazuharu Yanagimoto
       url: https://zenn.dev/nicetak
-style:
-  color-accent: 516db0
-format:
-  awesomecv-typst:
-    font-paths: ["assets/fonts/"]
-    keep-typ: true
+format: awesomecv-typst
+brand:
+  typography: 
+    fonts:
+      - family: Roboto
+        source: google
+        weight: [100, 400, 700]
+      - family: Source Sans 3
+        source: google
+        weight: [100, 400, 700]
+        style: [normal, italic]
+  color:
+    primary: "#516db0"
 execute: 
   echo: false
   warning: false
@@ -54,13 +61,13 @@ library(typstcv)
 ```{r}
 #| output: asis
 educ <- read.csv(
-    "data/education.csv",
-    colClasses = c("character", "Date", "Date", "character", "character")
+  "data/education.csv",
+  colClasses = c("character", "Date", "Date", "character", "character")
 )
 
 educ |>
-    format_date(end = "end", sort_by = "start") |>
-    resume_entry(title = "degree", description = "institution")
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry(title = "degree", description = "institution")
 ```
 
 ## Research
@@ -74,7 +81,7 @@ research <- read.csv("data/research.csv")
 ```{r}
 #| output: asis
 research[research$type == "working_paper", ] |>
-    resume_entry(title = "title", description = "coauthors", date = "date")
+  resume_entry(title = "title", description = "coauthors", date = "date")
 ```
 
 ## Conference Presentations
@@ -83,11 +90,11 @@ research[research$type == "working_paper", ] |>
 #| output: asis
 
 read.csv(
-    "data/conference.csv",
-    colClasses = c("character", "Date", "Date", "character", "character")
+  "data/conference.csv",
+  colClasses = c("character", "Date", "Date", "character", "character")
 ) |>
-    format_date(sort_by = "start") |>
-    resume_entry(title = "title")
+  format_date(sort_by = "start") |>
+  resume_entry(title = "title")
 ```
 
 ## Research Experience
@@ -96,11 +103,11 @@ read.csv(
 #| output: asis
 
 read.csv(
-    "data/job.csv",
-    colClasses = c("character", "character", "Date", "Date", "character")
+  "data/job.csv",
+  colClasses = c("character", "character", "Date", "Date", "character")
 ) |>
-    format_date(end = "end", sort_by = "start") |>
-    resume_entry(description = "institution")
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry(description = "institution")
 ```
 
 ## Teaching Experience
@@ -109,11 +116,11 @@ read.csv(
 #| output: asis
 
 read.csv(
-    "data/teaching.csv",
-    colClasses = c("character", "character", "Date", "Date", "character")
+  "data/teaching.csv",
+  colClasses = c("character", "character", "Date", "Date", "character")
 ) |>
-    format_date(end = "end", sort_by = "start") |>
-    resume_entry(description = "institution")
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry(description = "institution")
 ```
 
 ## Other Experience
@@ -122,7 +129,7 @@ read.csv(
 #| output: asis
 
 read.csv("data/other.csv") |>
-    resume_entry(details = c("detail1", "detail2"))
+  resume_entry(details = c("detail1", "detail2"))
 ```
 
 ## Research Grant
@@ -131,8 +138,8 @@ read.csv("data/other.csv") |>
 #| output: asis
 
 read.csv("data/grant.csv", colClasses = c("character", "character", "Date")) |>
-    format_date(start = "year", date_format = "%Y", sort_by = "start") |>
-    resume_entry(description = "amount")
+  format_date(start = "year", date_format = "%Y", sort_by = "start") |>
+  resume_entry(description = "amount")
 ```
 
 
@@ -142,11 +149,11 @@ read.csv("data/grant.csv", colClasses = c("character", "character", "Date")) |>
 #| output: asis
 
 read.csv(
-    "data/scholarship.csv",
-    colClasses = c("character", "Date", "Date", "character", "character")
+  "data/scholarship.csv",
+  colClasses = c("character", "Date", "Date", "character", "character")
 ) |>
-    format_date(end = "end", sort_by = "start") |>
-    resume_entry()
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry()
 ```
 
 
@@ -155,5 +162,5 @@ read.csv(
 ```{r}
 #| output: asis
 read.csv("data/skill.csv") |>
-    resume_entry(title = "area", description = "skills")
+  resume_entry(title = "area", description = "skills")
 ```

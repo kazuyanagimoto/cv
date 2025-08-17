@@ -4,6 +4,8 @@ on:
     branches: main
 
 name: Quarto Publish
+env:
+  RENV_PATHS_ROOT: ~/.cache/R/renv
 
 jobs:
   build-deploy:
@@ -13,15 +15,17 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+      
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2          
 
-      - uses: r-lib/actions/setup-r@v2
-      - name: Install dependencies
-        run: |
-          Rscript -e 'install.packages("typstcv", repos = "https://kazuyanagimoto.r-universe.dev")'
-          Rscript -e 'install.packages("rmarkdown")'
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 1
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2

@@ -46,3 +46,4 @@ docs/*
 /.quarto/
 cv.typ
 .DS_Store
+air.toml

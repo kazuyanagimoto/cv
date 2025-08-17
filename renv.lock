@@ -812,36 +812,56 @@
     },
     "quarto": {
       "Package": "quarto",
-      "Version": "1.4.4",
+      "Version": "1.5.0",
       "Source": "Repository",
       "Title": "R Interface to 'Quarto' Markdown Publishing System",
-      "Authors@R": "c( person(\"JJ\", \"Allaire\", , \"jj@posit.co\", role = \"aut\", comment = c(ORCID = \"0000-0003-0174-9868\")), person(\"Christophe\", \"Dervieux\", , \"cderv@posit.co\", role = c(\"cre\", \"aut\"), comment = c(ORCID = \"0000-0003-4474-2498\")), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")) )",
+      "Authors@R": "c( person(\"JJ\", \"Allaire\", , \"jj@posit.co\", role = \"aut\", comment = c(ORCID = \"0000-0003-0174-9868\")), person(\"Christophe\", \"Dervieux\", , \"cderv@posit.co\", role = c(\"cre\", \"aut\"), comment = c(ORCID = \"0000-0003-4474-2498\")), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")), person(\"Gordon\", \"Woodhull\", role = \"ctb\") )",
       "Description": "Convert R Markdown documents and 'Jupyter' notebooks to a variety of output formats using 'Quarto'.",
-      "License": "GPL (>= 2)",
+      "License": "MIT + file LICENSE",
       "URL": "https://github.com/quarto-dev/quarto-r, https://quarto-dev.github.io/quarto-r/",
       "BugReports": "https://github.com/quarto-dev/quarto-r/issues",
       "Depends": [
-        "R (>= 3.6)"
+        "R (>= 4.1.0)"
       ],
       "Imports": [
         "cli",
+        "fs",
+        "htmltools",
         "jsonlite",
         "later",
+        "lifecycle",
         "processx",
         "rlang",
         "rmarkdown",
         "rstudioapi",
         "tools",
         "utils",
-        "yaml"
+        "xfun",
+        "yaml (>= 2.3.10)"
       ],
       "Suggests": [
+        "bslib",
+        "callr",
         "curl",
+        "dplyr",
+        "flextable",
+        "ggiraph",
+        "ggplot2",
+        "gt",
+        "heatmaply",
+        "kableExtra",
         "knitr",
+        "palmerpenguins",
+        "patchwork",
+        "pkgload",
+        "plotly",
         "rsconnect (>= 0.8.26)",
         "testthat (>= 3.1.7)",
-        "withr",
-        "xfun"
+        "thematic",
+        "tidyverse",
+        "tinytable",
+        "whoami",
+        "withr"
       ],
       "VignetteBuilder": "quarto",
       "Config/testthat/edition": "3",
@@ -849,7 +869,7 @@
       "RoxygenNote": "7.3.2",
       "SystemRequirements": "Quarto command line tool (<https://github.com/quarto-dev/quarto-cli>).",
       "NeedsCompilation": "no",
-      "Author": "JJ Allaire [aut] (<https://orcid.org/0000-0003-0174-9868>), Christophe Dervieux [cre, aut] (<https://orcid.org/0000-0003-4474-2498>), Posit Software, PBC [cph, fnd]",
+      "Author": "JJ Allaire [aut] (ORCID: <https://orcid.org/0000-0003-0174-9868>), Christophe Dervieux [cre, aut] (ORCID: <https://orcid.org/0000-0003-4474-2498>), Posit Software, PBC [cph, fnd], Gordon Woodhull [ctb]",
       "Maintainer": "Christophe Dervieux <cderv@posit.co>",
       "Repository": "CRAN"
     },
@@ -884,7 +904,7 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "1.1.4",
+      "Version": "1.1.5",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Project Environments",
@@ -903,6 +923,7 @@
         "covr",
         "cpp11",
         "devtools",
+        "generics",
         "gitcreds",
         "jsonlite",
         "jsonvalidate",
@@ -931,9 +952,9 @@
       "Config/testthat/parallel": "true",
       "Config/testthat/start-first": "bioconductor,python,install,restore,snapshot,retrieve,remotes",
       "NeedsCompilation": "no",
-      "Author": "Kevin Ushey [aut, cre] (<https://orcid.org/0000-0003-2880-7407>), Hadley Wickham [aut] (<https://orcid.org/0000-0003-4757-117X>), Posit Software, PBC [cph, fnd]",
+      "Author": "Kevin Ushey [aut, cre] (ORCID: <https://orcid.org/0000-0003-2880-7407>), Hadley Wickham [aut] (ORCID: <https://orcid.org/0000-0003-4757-117X>), Posit Software, PBC [cph, fnd]",
       "Maintainer": "Kevin Ushey <kevin@rstudio.com>",
-      "Repository": "CRAN"
+      "Repository": "https://packagemanager.posit.co/cran/latest"
     },
     "rlang": {
       "Package": "rlang",
@@ -1130,7 +1151,7 @@
     },
     "typstcv": {
       "Package": "typstcv",
-      "Version": "0.0.2.2",
+      "Version": "0.0.2.4",
       "Source": "Repository",
       "Type": "Package",
       "Title": "CV for Quarto & Typst",
@@ -1148,7 +1169,7 @@
       "Repository": "https://kazuyanagimoto.r-universe.dev",
       "RemoteUrl": "https://github.com/kazuyanagimoto/typstcv",
       "RemoteRef": "HEAD",
-      "RemoteSha": "0a39793915729f1fd37d3430e47853053cb273a3",
+      "RemoteSha": "d6d55170e7c7e958e54e96f13cf9f0d70ed7f759",
       "NeedsCompilation": "no",
       "Author": "Kazuharu Yanagimoto [aut, cre] (ORCID: <https://orcid.org/0009-0007-1967-8304>)",
       "Maintainer": "Kazuharu Yanagimoto <kazuharu.yanagimoto@gmail.com>"
