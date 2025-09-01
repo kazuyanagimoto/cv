@@ -3,12 +3,12 @@ title: "Kazuharu Yanagimoto"
 author:
   firstname: Kazuharu
   lastname: Yanagimoto
-  address: CEMFI, Calle Casado del Alisal 5, 28014 Madrid, Spain
-  position: "Ph.D. in Economics. Labor, Macro, and Family Economics."
+  address: Graduate School of Economics, Kobe University, 2-1 Rokkodai-cho Nada-ku, Kobe, Hyogo Prefecture, 657-8501, Japan
+  position: Associate Professor at Kobe University. Labor, Macro, and Family Economics
   contacts:
     - icon: fa envelope
-      text: kazuharu.yanagimoto@cemfi.edu.es
-      url: "mailto:kazuharu.yanagimoto@cemfi.edu.es"
+      text: yanagimoto@econ.kobe-u.ac.jp
+      url: "mailto:yanagimoto@econ.kobe-u.ac.jp"
     - icon: assets/icon/bi-house-fill.svg
       text: kazuyanagimoto.com
       url: https://kazuyanagimoto.com
@@ -55,6 +55,17 @@ execute:
 library(typstcv)
 ```
 
+## Positions
+
+```{r}
+#| output: asis
+read.csv(
+  "data/position.csv",
+  colClasses = c("character", "Date", "Date", "character", "character")
+) |>
+  format_date(end = "end", sort_by = "start") |>
+  resume_entry(title = "title", description = "location")
+```
 
 ## Education
 
